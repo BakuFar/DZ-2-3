@@ -7,70 +7,90 @@ import Foundation
 //Пример:
 //#1 - Имя Фамилия - Возраст - Класс - Средний балл
 
-class Student{
-    var name: String = ""
-    var surname: String = ""
-    var age: Int = 0
-    var grade: Int = 0
-    var avarageScore: Int = 0
-    
-    init(name: String, surname: String, age: Int, grade: Int, avarageScore: Int) {
-        self.name = name
-        self.surname = surname
-        self.age = age
-        self.grade = grade
-        self.avarageScore = avarageScore
-    }
-}
-
-class Teacher{
-    var name: String = ""
-    var surname: String = ""
-    var age: Int = 0
-    
-    init(name: String, surname: String, age: Int) {
-        self.name = name
-        self.surname = surname
-        self.age = age
-    }
-}
-
 class Database {
     private var studentsArray: [Student] = []
     private var studentsString: String = ""
-    private var studentsCount: Int = 0
     private var teachersArray: [Teacher] = []
     private var teachersString: String = ""
-    private var teachersCount: Int = 0
+    class Teacher{
+         var name: String = ""
+         var surname: String = ""
+         var age: Int = 0
+        
+        init(name: String, surname: String, age: Int) {
+            self.name = name
+            self.surname = surname
+            self.age = age
+        }
+    }
+    class Student{
+        var name: String = ""
+        var surname: String = ""
+        var age: Int = 0
+        var grade: Int = 0
+        var avarageScore: Int = 0
 
+        init(name: String, surname: String, age: Int, grade: Int, avarageScore: Int) {
+            self.name = name
+            self.surname = surname
+            self.age = age
+            self.grade = grade
+            self.avarageScore = avarageScore
+        }
+    }
     func addStudent(student: Student) {
         studentsArray.append(student)
-        studentsCount += 1
-        studentsString += "\nStudent #\(studentsCount)\nname - \(student.name)\nsurname - \(student.surname)\nage - \(student.age)\ngrade - \(student.grade)\navarage score - \(student.avarageScore)\n"
+    }
+    func removeStudent(name: String, surname: String) {
+        for (index, value) in studentsArray.enumerated() {
+            if value.name == name && value.surname == surname {
+                studentsArray.remove(at: index)
+                break
+            }
+        }
     }
     func showStudentsInfo() {
+        dump(studentsArray)
+    }
+    func printStudentsList() {
+        for (index, item) in studentsArray.enumerated() {
+            studentsString += "\n#\(index+1) \(item.name) \(item.surname) age - \(item.age) grade - \(item.grade) avarage score - \(item.avarageScore)"
+        }
         print(studentsString)
     }
     func addTeacher(teacher: Teacher) {
         teachersArray.append(teacher)
-        teachersCount += 1
-        teachersString += "\nTeacher #\(teachersCount)\nname - \(teacher.name)\nsurname - \(teacher.surname)\nage - \(teacher.age)\n"
+        }
+    func removeTeacher (name: String, surname: String) {
+        for (index, item) in teachersArray.enumerated() {
+            if item.name == name && item.surname == surname {
+                teachersArray.remove(at: index)
+                break
+            }
+        }
     }
     func showTeachersInfo() {
+        dump(teachersArray)
+    }
+    func printTeachersList() {
+        for (index, item) in teachersArray.enumerated() {
+            teachersString += "\n#\(index+1) \(item.name) \(item.surname) age - \(item.age)"
+        }
         print(teachersString)
     }
 }
 let database = Database()
-let edil = Student(name: "Edil", surname: "Baysalov", age: 16, grade: 9, avarageScore: 78)
-let vlad = Student(name: "Vladislav", surname: "Voskoboynikov", age: 14, grade: 7, avarageScore: 86)
-let meder = Student(name: "Meder", surname: "Bazarbaev", age: 13, grade: 7, avarageScore: 77)
-let dayir = Teacher(name: "Dayir", surname: "Duyshobaev", age: 32)
-let asyl = Teacher(name: "Asylbek", surname: "Agay", age: 42)
 
-database.addStudent(student: vlad)
-database.addStudent(student: edil)
-database.addStudent(student: meder)
-database.showStudentsInfo()
-database.addTeacher(teacher: dayir)
-database.addTeacher(teacher: asyl)
+database.addTeacher(teacher: Database.Teacher(name: "Sanjar", surname: "Kuliev", age: 42))
+database.addTeacher(teacher: Database.Teacher(name: "Nurdin", surname: "Osmonov", age: 45))
+database.addTeacher(teacher: Database.Teacher(name: "Koshoev", surname: "Maksat", age: 50))
+database.removeTeacher(name: "Nurdin", surname: "Osmonov")
 database.showTeachersInfo()
+database.printTeachersList()
+
+database.addStudent(student: Database.Student(name: "Vladislav", surname: "Voskoboynikov", age: 12, grade: 6, avarageScore: 75))
+database.addStudent(student: Database.Student(name: "Aybek", surname: "Ramankulov", age: 10, grade: 4, avarageScore: 88))
+database.addStudent(student: Database.Student(name: "Sanjar", surname: "Kuliev", age: 17, grade: 11, avarageScore: 60))
+database.removeStudent(name: "Aybek", surname: "Ramankulov")
+database.showStudentsInfo()
+database.printStudentsList()
