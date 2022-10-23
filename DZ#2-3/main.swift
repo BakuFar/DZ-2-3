@@ -17,6 +17,34 @@ import Foundation
 //Пример:
 //#1 - Имя Фамилия - Возраст - Класс - Средний балл
 
+class Student{
+    var name: String = ""
+    var surname: String = ""
+    var age: Int = 0
+    var grade: Int = 0
+    var avarageScore: Int = 0
+    
+    init(name: String, surname: String, age: Int, grade: Int, avarageScore: Int) {
+        self.name = name
+        self.surname = surname
+        self.age = age
+        self.grade = grade
+        self.avarageScore = avarageScore
+    }
+}
+
+class Teacher{
+    var name: String = ""
+    var surname: String = ""
+    var age: Int = 0
+    
+    init(name: String, surname: String, age: Int) {
+        self.name = name
+        self.surname = surname
+        self.age = age
+    }
+}
+
 class Database {
     private var studentsArray: [Student] = []
     private var studentsString: String = ""
@@ -56,4 +84,5 @@ database.showStudentsInfo()
 database.addTeacher(teacher: dayir)
 database.addTeacher(teacher: asyl)
 database.showTeachersInfo()
+
 
