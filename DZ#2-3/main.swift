@@ -30,9 +30,6 @@ class Database {
         studentsCount += 1
         studentsString += "\nStudent #\(studentsCount)\nname - \(student.name)\nsurname - \(student.surname)\nage - \(student.age)\ngrade - \(student.grade)\navarage score - \(student.avarageScore)\n"
     }
-    func removeStudent(student: Student) {
-        
-    }
     func showStudentsInfo() {
         print(studentsString)
     }
@@ -59,3 +56,4 @@ database.showStudentsInfo()
 database.addTeacher(teacher: dayir)
 database.addTeacher(teacher: asyl)
 database.showTeachersInfo()
+
